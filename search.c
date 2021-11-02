@@ -2,20 +2,22 @@
 #include <stdlib.h>
 #include <math.h>
 
-int binarySearch(int* A, int N, int key)
+int binarySearch(int* arr, int n, int val)
 {
-	int L = 0;
-	int R = N - 1;
-	while (L <= R)
+	// l, r, m stand for left, right and middle, respectively
+	int l = 0;
+	int r = n - 1;
+	int m = -1;
+	while (l <= r)
 	{
-		int m = floor((L + R) / 2);
-		if (key < A[m])
+		m = floor((l + r) / 2);
+		if (val < arr[m])
 		{
-			R = m - 1;
+			r = m - 1;
 		}
-		else if (key > A[m])
+		else if (val > arr[m])
 		{
-			L = m + 1;
+			l = m + 1;
 		}
 		else
 		{
@@ -27,15 +29,15 @@ int binarySearch(int* A, int N, int key)
 
 int main(int argc, char const *argv[])
 {
-	int N = atoi(argv[1]);
-	int key = atoi(argv[2]);
-	int* A = malloc(N * sizeof(int));
-	for (int i = 0; i < N; ++i)
+	int n = atoi(argv[1]);
+	int val = atoi(argv[2]);
+	int* arr = malloc(n * sizeof(int));
+	for (int i = 0; i < n; ++i)
 	{
-		A[i] = i;
+		arr[i] = i;
 	}
 
-	int keyIndex = binarySearch(A, N, key);
+	int keyIndex = binarySearch(arr, n, val);
 	if (keyIndex == -1)
 	{
 		printf("Key not found.\n");

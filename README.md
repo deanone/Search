@@ -1,4 +1,4 @@
-This repo contains native C implementations of popular search algorithms (apart from linear), namely:
+This repo contains native C implementations of popular search algorithms (apart from linear search), namely:
 
 1. Binary search (https://en.wikipedia.org/wiki/Binary_search_algorithm)
 2. Jump search (https://en.wikipedia.org/wiki/Jump_search)
@@ -12,4 +12,4 @@ Compile:
 
 Run:
 
-./search.out [number of values in array] [key to search for]
+./search.out [number of values of array in which key is searched] [value to search for]
