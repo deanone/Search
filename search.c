@@ -4,6 +4,11 @@
 #include <time.h>
 #include <stdbool.h>
 
+int min(int x, int y)
+{
+	return (x < y) ? x : y;
+}
+
 int linearSearch(int* arr, int n, int val)
 {
 	bool found = false;
@@ -23,7 +28,7 @@ int linearSearch(int* arr, int n, int val)
 	}
 	else
 	{
-		return - 1;
+		return - 1;	// key not found
 	}
 }
 
@@ -52,6 +57,40 @@ int binarySearch(int* arr, int n, int val)
 	return -1;	// key not found
 }
 
+int jumpSearch(int* arr, int n, int val)
+{
+	int a = 0;
+	int b = floor(sqrt(n));
+	while (arr[min(b, n) - 1] < val)
+	{
+		a = b;
+		b += floor(sqrt(n));
+		if (a >= n)
+		{
+			return -1;	// key not found
+		}
+	}
+
+	while (arr[a] < val)
+	{
+		a += 1;
+		if (a == min(b, n))
+		{
+			return -1;	// key not found
+		}
+	}
+
+	if (arr[a] == val)
+	{
+		return a;
+	}
+	else
+	{
+		return -1;	// key not found
+	}
+
+}
+
 int main(int argc, char const *argv[])
 {
 	int algorithmID = atoi(argv[1]);
@@ -67,7 +106,7 @@ int main(int argc, char const *argv[])
 
 	switch (algorithmID)
 	{
-		case 1:
+		case 1:	// linear search
 		{
 			clock_t start = clock();
 			keyIndex = linearSearch(arr, n, val);
@@ -75,10 +114,18 @@ int main(int argc, char const *argv[])
 			elapsedTime = (double)(end - start) / CLOCKS_PER_SEC;
 			break;
 		}
-		case 2:
+		case 2:	// binary search
 		{
 			clock_t start = clock();
 			keyIndex = binarySearch(arr, n, val);
+			clock_t end = clock();
+			elapsedTime = (double)(end - start) / CLOCKS_PER_SEC;
+			break;
+		}
+		case 3:	// jump search
+		{
+			clock_t start = clock();
+			keyIndex = jumpSearch(arr, n, val);
 			clock_t end = clock();
 			elapsedTime = (double)(end - start) / CLOCKS_PER_SEC;
 			break;
