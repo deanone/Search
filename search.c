@@ -1,14 +1,34 @@
+/*!
+ * Native C implementations of popular search algorithms.
+ * Author: Athanasios Salamanis
+ * Project start date: Tuesday 02/11/2021
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
 #include <stdbool.h>
 
-int min(int x, int y)
+/*!
+ * Returns the minimum of two integer values.
+ * @param v1 the first integer value.
+ * @param v2 the second integer value.
+ * @return the minimum of the two integer values.
+ */
+int min(int v1, int v2)
 {
-	return (x < y) ? x : y;
+	return (v1 < v2) ? v1 : v2;
 }
 
+/*!
+ * Implements the linear search algorithm.
+ * @param arr the sorted array in which a value is searched.
+ * @param n the number of values in the sorted array.
+ * @param val the value we are searching for.
+ * @return the index of the searched value if it is contained in the array, -1 otherwise.
+ */
 int linearSearch(int* arr, int n, int val)
 {
 	bool found = false;
@@ -32,6 +52,13 @@ int linearSearch(int* arr, int n, int val)
 	}
 }
 
+/*!
+ * Implements the binary search algorithm.
+ * @param arr the sorted array in which a value is searched.
+ * @param n the number of values in the sorted array.
+ * @param val the value we are searching for.
+ * @return the index of the searched value if it is contained in the array, -1 otherwise.
+ */
 int binarySearch(int* arr, int n, int val)
 {
 	// l, r, m stand for left, right and middle, respectively
@@ -57,6 +84,13 @@ int binarySearch(int* arr, int n, int val)
 	return -1;	// key not found
 }
 
+/*!
+ * Implements the jump search algorithm.
+ * @param arr the sorted array in which a value is searched.
+ * @param n the number of values in the sorted array.
+ * @param val the value we are searching for.
+ * @return the index of the searched value if it is contained in the array, -1 otherwise.
+ */
 int jumpSearch(int* arr, int n, int val)
 {
 	int a = 0;
@@ -91,6 +125,9 @@ int jumpSearch(int* arr, int n, int val)
 
 }
 
+/*!
+ * The start point of application. Just for demonstration purposes, i.e., the algorithms themselves can be embeded into a library.
+ */
 int main(int argc, char const *argv[])
 {
 	int algorithmID = atoi(argv[1]);
